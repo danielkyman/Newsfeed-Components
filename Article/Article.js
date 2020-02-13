@@ -1,5 +1,9 @@
 /* This is the data we will be using to create our article components */
 /* Look over this data, then proceed to line 91*/
+
+// import {gsap} from "gsap-core.js";
+// import gsap from "gsap";
+
 const data = [
   {
     title: 'Lambda School Students: "We\'re the best!"',
@@ -134,6 +138,7 @@ const data = [
 */
 
 
+
 function createArticle(object) {
 
   const article = document.createElement('div');
@@ -151,7 +156,7 @@ function createArticle(object) {
   article.appendChild(thirdP);
   article.appendChild(button);
 
-  article.classList.add('article', 'close');
+  article.classList.add('article');
   date.classList.add('date');
   button.classList.add('expandButton');
 
@@ -165,7 +170,12 @@ function createArticle(object) {
   button.addEventListener('click', () => {
     console.log('button-pressed');
     article.classList.toggle('article-open');
+
   });
+
+  article.addEventListener('click', () => {
+
+  })
 
   return article;
 }
@@ -177,3 +187,22 @@ const articles = document.querySelector('.articles');
 data.map(element => {
   articles.appendChild(createArticle(element));
 });
+
+
+const test = document.querySelector('.test');
+
+test.addEventListener('click', () => {
+  gsap.to('.test', {
+    ease: "elastic(1, 0.75)",
+    rotate: 360
+  });
+});
+
+
+
+Draggable.create(".test", {
+  type: "x,y",
+  bounds: document.querySelector("body"),
+  inertia: true
+});
+
